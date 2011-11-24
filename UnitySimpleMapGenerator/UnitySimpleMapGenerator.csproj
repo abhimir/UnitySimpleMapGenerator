@@ -7,8 +7,12 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{0BC32450-0FF3-4799-A091-3BD5FE66AB35}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>UnitySimpleMapGenerator</RootNamespace>
-    <AssemblyName>UnitySimpleMapGenerator</AssemblyName>
+    <RootNamespace>Taffer.UnitySimpleMapGenerator</RootNamespace>
+    <AssemblyName>Taffer.UnitySimpleMapGenerator</AssemblyName>
+    <Description>This is a port of Baran Kahyaoglu's Simple Map Generator, which you can find
+here:
+
+http://www.barankahyaoglu.com/blog/post/2011/07/27/Simple-Map-Generator-Part-1.aspx</Description>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,9 +34,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\..\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEngine.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="FortuneVoronoi\FortuneVoronoi.csproj">
+      <Project>{21803548-A68A-473A-BF1B-0AE5F63F9F1A}</Project>
+      <Name>FortuneVoronoi</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

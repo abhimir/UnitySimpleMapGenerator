@@ -7,8 +7,11 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{21803548-A68A-473A-BF1B-0AE5F63F9F1A}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>FortuneVoronoi</RootNamespace>
-    <AssemblyName>FortuneVoronoi</AssemblyName>
+    <RootNamespace>BenDi.FortuneVoronoi</RootNamespace>
+    <AssemblyName>BenDi.FortuneVoronoi</AssemblyName>
+    <Description>Fortune's Voronoi algorithm, based on code by BenDi on Code Project:
+http://www.codeproject.com/KB/recipes/fortunevoronoi.aspx
+</Description>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -19,6 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -30,6 +34,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\..\..\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEngine.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
