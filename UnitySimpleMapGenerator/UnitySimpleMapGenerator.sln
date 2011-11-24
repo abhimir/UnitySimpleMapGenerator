@@ -1,0 +1,84 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitySimpleMapGenerator", "UnitySimpleMapGenerator.csproj", "{0BC32450-0FF3-4799-A091-3BD5FE66AB35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FortuneVoronoi", "FortuneVoronoi\FortuneVoronoi.csproj", "{21803548-A68A-473A-BF1B-0AE5F63F9F1A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0BC32450-0FF3-4799-A091-3BD5FE66AB35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BC32450-0FF3-4799-A091-3BD5FE66AB35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BC32450-0FF3-4799-A091-3BD5FE66AB35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BC32450-0FF3-4799-A091-3BD5FE66AB35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21803548-A68A-473A-BF1B-0AE5F63F9F1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21803548-A68A-473A-BF1B-0AE5F63F9F1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21803548-A68A-473A-BF1B-0AE5F63F9F1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21803548-A68A-473A-BF1B-0AE5F63F9F1A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = UnitySimpleMapGenerator.csproj
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = Flat
+		$1.ResourceNamePolicy = MSBuild
+		$0.TextStylePolicy = $2
+		$2.RemoveTrailingWhitespace = True
+		$2.inheritsSet = VisualStudio
+		$2.inheritsScope = text/plain
+		$2.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $3
+		$3.BeforeMethodDeclarationParentheses = False
+		$3.WithinMethodDeclarationParentheses = True
+		$3.BeforeMethodCallParentheses = False
+		$3.WithinMethodCallParentheses = True
+		$3.BeforeConstructorDeclarationParentheses = False
+		$3.WithinConstructorDeclarationParentheses = True
+		$3.BeforeDelegateDeclarationParentheses = False
+		$3.AfterDelegateDeclarationParameterComma = True
+		$3.WithinDelegateDeclarationParentheses = True
+		$3.NewParentheses = False
+		$3.IfParentheses = False
+		$3.WhileParentheses = False
+		$3.ForParentheses = False
+		$3.ForeachParentheses = False
+		$3.CatchParentheses = False
+		$3.SwitchParentheses = False
+		$3.LockParentheses = False
+		$3.UsingParentheses = False
+		$3.WithinParentheses = True
+		$3.WithinIfParentheses = True
+		$3.WithinWhileParentheses = True
+		$3.WithinForParentheses = True
+		$3.WithinForEachParentheses = True
+		$3.WithinCatchParentheses = True
+		$3.WithinSwitchParentheses = True
+		$3.WithinLockParentheses = True
+		$3.WithinUsingParentheses = True
+		$3.WithinNewParentheses = True
+		$3.SpacesBeforeBrackets = False
+		$3.inheritsSet = Mono
+		$3.inheritsScope = text/x-csharp
+		$3.scope = text/x-csharp
+		$0.TextStylePolicy = $4
+		$4.RemoveTrailingWhitespace = True
+		$4.inheritsSet = Mono
+		$4.inheritsScope = text/plain
+		$4.scope = text/plain
+		$0.StandardHeader = $5
+		$5.Text = @-----------------------------------------------------------------------\n<copyright file="Widget.cs" company="Taffer">\nUse this code for whatever you want, just don't blame me if it breaks.\n</copyright>\n-----------------------------------------------------------------------
+		$5.IncludeInNewFiles = True
+		$0.VersionControlPolicy = $6
+		$6.inheritsSet = Mono
+		$0.ChangeLogPolicy = $7
+		$7.UpdateMode = None
+		$7.MessageStyle = $8
+		$8.LineAlign = 0
+		$7.inheritsSet = Mono
+		description = A Unity3D port of Baran Kahyaoglu's Map Generator - http://www.barankahyaoglu.com/blog/page/MapGenerator.aspx
+	EndGlobalSection
+EndGlobal
