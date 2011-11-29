@@ -38,10 +38,10 @@ http://www.codeproject.com/KB/recipes/fortunevoronoi.aspx
       <HintPath>..\..\..\..\..\..\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="HashSet.cs" />
     <Compile Include="PriorityQueue.cs" />
     <Compile Include="ToolBox.cs" />
     <Compile Include="VoronoiEdge.cs" />
