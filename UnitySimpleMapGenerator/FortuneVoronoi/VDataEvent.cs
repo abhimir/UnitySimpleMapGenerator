@@ -2,24 +2,26 @@ namespace BenDi.FortuneVoronoi
 {
     using System;
 
+    using UnityEngine;
+
     internal class VDataEvent : VEvent
     {
-        public Vector DataPoint;
+        public Vector2 DataPoint;
 
-        public VDataEvent( Vector DP )
+        public VDataEvent( Vector2 DP )
         {
             this.DataPoint = DP;
         }
 
         public override double Y {
             get {
-                return DataPoint[1];
+                return DataPoint.y;
             }
         }
 
         public override double X {
             get {
-                return DataPoint[0];
+                return DataPoint.x;
             }
         }
 

@@ -3,12 +3,14 @@ namespace BenDi.FortuneVoronoi
     using System;
     using System.Collections;
 
+    using UnityEngine;
+
 	// VoronoiVertex or VoronoiDataPoint are represented as Vector
 
 	public abstract class Fortune
 	{
-		public static readonly Vector VVInfinite = new Vector(double.PositiveInfinity, double.PositiveInfinity);
-		public static readonly Vector VVUnkown = new Vector(double.NaN, double.NaN);
+		public static readonly Vector2 VVInfinite = new Vector2(float.PositiveInfinity, float.PositiveInfinity);
+		public static readonly Vector2 VVUnkown = new Vector2(float.NaN, float.NaN);
 		internal static double ParabolicCut(double x1, double y1, double x2, double y2, double ys)
 		{
 //			y1=-y1;
@@ -49,43 +51,43 @@ namespace BenDi.FortuneVoronoi
 				return xs2;
 			return xs1;
 		}
-		internal static Vector CircumCircleCenter(Vector A, Vector B, Vector C)
+		internal static Vector2 CircumCircleCenter(Vector2 A, Vector2 B, Vector2 C)
 		{
 			if(A==B || B==C || A==C)
 				throw new Exception("Need three different points!");
-			double tx = (A[0] + C[0])/2;
-			double ty = (A[1] + C[1])/2;
+			float tx = (A.x + C.x)/2;
+			float ty = (A.y + C.y)/2;
 
-			double vx = (B[0] + C[0])/2;
-			double vy = (B[1] + C[1])/2;
+			float vx = (B.x + C.x)/2;
+			float vy = (B.y + C.y)/2;
 
-			double ux,uy,wx,wy;
+			float ux,uy,wx,wy;
 			
-			if(A[0] == C[0])
+			if(A.x == C.x)
 			{
 				ux = 1;
 				uy = 0;
 			}
 			else
 			{
-				ux = (C[1] - A[1])/(A[0] - C[0]);
+				ux = (C.y - A.y)/(A.x - C.x);
 				uy = 1;
 			}
 
-			if(B[0] == C[0])
+			if(B.x == C.x)
 			{
 				wx = -1;
 				wy = 0;
 			}
 			else
 			{
-				wx = (B[1] - C[1])/(B[0] - C[0]);
+				wx = (B.y - C.y)/(B.x - C.x);
 				wy = -1;
 			}
 
-			double alpha = (wy*(vx-tx)-wx*(vy - ty))/(ux*wy-wx*uy);
+			float alpha = (wy*(vx-tx)-wx*(vy - ty))/(ux*wy-wx*uy);
 
-			return new Vector(tx+alpha*ux,ty+alpha*uy);
+			return new Vector2(tx+alpha*ux,ty+alpha*uy);
 		}	
 		public static VoronoiGraph ComputeVoronoiGraph(IEnumerable Datapoints)
 		{
@@ -93,7 +95,7 @@ namespace BenDi.FortuneVoronoi
 			Hashtable CurrentCircles = new Hashtable();
 			VoronoiGraph VG = new VoronoiGraph();
 			VNode RootNode = null;
-			foreach(Vector V in Datapoints)
+			foreach(Vector2 V in Datapoints)
 			{
 				PQ.Push(new VDataEvent(V));
 			}
@@ -129,10 +131,10 @@ namespace BenDi.FortuneVoronoi
 				}
 				if(VE is VDataEvent)
 				{
-					Vector DP = ((VDataEvent)VE).DataPoint;
+					Vector2 DP = ((VDataEvent)VE).DataPoint;
 					foreach(VCircleEvent VCE in CurrentCircles.Values)
 					{
-						if(MathTools.Dist(DP[0],DP[1],VCE.Center[0],VCE.Center[1])<VCE.Y-VCE.Center[1] && Math.Abs(MathTools.Dist(DP[0],DP[1],VCE.Center[0],VCE.Center[1])-(VCE.Y-VCE.Center[1]))>1e-10)
+						if(MathTools.Dist(DP.x,DP.y,VCE.Center.x,VCE.Center.y)<VCE.Y-VCE.Center.y && Math.Abs(MathTools.Dist(DP.x,DP.y,VCE.Center.x,VCE.Center.y)-(VCE.Y-VCE.Center.y))>1e-10)
 							VCE.Valid = false;
 					}
 				}

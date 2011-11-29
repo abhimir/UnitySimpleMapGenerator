@@ -2,6 +2,8 @@ namespace BenDi.FortuneVoronoi
 {
     using System;
 
+    using UnityEngine;
+
     internal abstract class VNode
     {
         private VNode _Parent = null;
@@ -186,7 +188,7 @@ namespace BenDi.FortuneVoronoi
             eu = (VEdgeNode)b.Parent;
             CircleCheckList = new VDataNode[] {a,c};
             //1. Create the new Vertex
-            Vector VNew = new Vector( e.Center[0], e.Center[1] );
+            Vector2 VNew = new Vector2( e.Center.x, e.Center.y );
 //           VNew[0] = Fortune.ParabolicCut(a.DataPoint[0],a.DataPoint[1],c.DataPoint[0],c.DataPoint[1],ys);
 //           VNew[1] = (ys + a.DataPoint[1])/2 - 1/(2*(ys-a.DataPoint[1]))*(VNew[0]-a.DataPoint[0])*(VNew[0]-a.DataPoint[0]);
             VG.Vertizes.Add( VNew );
@@ -230,9 +232,9 @@ namespace BenDi.FortuneVoronoi
             VDataNode r = VNode.RightDataNode( n );
             if( l == null || r == null || l.DataPoint == r.DataPoint || l.DataPoint == n.DataPoint || n.DataPoint == r.DataPoint )
                 return null;
-            if( MathTools.ccw( l.DataPoint[0], l.DataPoint[1], n.DataPoint[0], n.DataPoint[1], r.DataPoint[0], r.DataPoint[1], false ) <= 0 )
+            if( MathTools.ccw( l.DataPoint.x, l.DataPoint.y, n.DataPoint.x, n.DataPoint.y, r.DataPoint.x, r.DataPoint.y, false ) <= 0 )
                 return null;
-            Vector Center = Fortune.CircumCircleCenter( l.DataPoint, n.DataPoint, r.DataPoint );
+            Vector2 Center = Fortune.CircumCircleCenter( l.DataPoint, n.DataPoint, r.DataPoint );
             VCircleEvent VC = new VCircleEvent();
             VC.NodeN = n;
             VC.NodeL = l;

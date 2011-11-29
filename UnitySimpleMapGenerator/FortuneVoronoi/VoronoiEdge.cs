@@ -2,12 +2,14 @@ namespace BenDi.FortuneVoronoi
 {
     using System;
 
+    using UnityEngine;
+
     public class VoronoiEdge
     {
-        public Vector RightData, LeftData;
-        public Vector VVertexA = Fortune.VVUnkown, VVertexB = Fortune.VVUnkown;
+        public Vector2 RightData, LeftData;
+        public Vector2 VVertexA = Fortune.VVUnkown, VVertexB = Fortune.VVUnkown;
 
-        public void AddVertex( Vector V )
+        public void AddVertex( Vector2 V )
         {
             if( VVertexA == Fortune.VVUnkown )
                 VVertexA = V;

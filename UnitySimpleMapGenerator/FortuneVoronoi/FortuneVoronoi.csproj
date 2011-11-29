@@ -53,7 +53,6 @@ http://www.codeproject.com/KB/recipes/fortunevoronoi.aspx
     <Compile Include="VDataEvent.cs" />
     <Compile Include="VCircleEvent.cs" />
     <Compile Include="Fortune.cs" />
-    <Compile Include="Vector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
