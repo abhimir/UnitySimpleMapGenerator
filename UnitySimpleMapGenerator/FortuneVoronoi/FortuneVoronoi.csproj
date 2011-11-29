@@ -41,10 +41,18 @@ http://www.codeproject.com/KB/recipes/fortunevoronoi.aspx
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="FortuneVoronoi.cs" />
     <Compile Include="HashSet.cs" />
     <Compile Include="PriorityQueue.cs" />
     <Compile Include="ToolBox.cs" />
+    <Compile Include="VoronoiEdge.cs" />
+    <Compile Include="VNode.cs" />
+    <Compile Include="VDataNode.cs" />
+    <Compile Include="VoronoiGraph.cs" />
+    <Compile Include="VEdgeNode.cs" />
+    <Compile Include="VEvent.cs" />
+    <Compile Include="VDataEvent.cs" />
+    <Compile Include="VCircleEvent.cs" />
+    <Compile Include="Fortune.cs" />
     <Compile Include="Vector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
