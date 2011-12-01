@@ -2,3 +2,8 @@
 *.userprefs
 .DS_Store
 bin
+obj
+*.suo
+UnitySimpleMapGenerator/obj/Debug/ResolveAssemblyReference.cache
+UnitySimpleMapGenerator/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+UnitySimpleMapGenerator/obj/Debug/UnitySimpleMapGenerator.csproj.FileListAbsolute.txt
