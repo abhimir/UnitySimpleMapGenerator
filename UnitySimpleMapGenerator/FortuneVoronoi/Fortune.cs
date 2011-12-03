@@ -11,6 +11,7 @@ namespace BenDi.FortuneVoronoi
     using System;
     using System.Collections;
 
+    using NGenerics.DataStructures.Queues;
     using UnityEngine;
 
 	// VoronoiVertex or VoronoiDataPoint are represented as Vector
@@ -99,17 +100,18 @@ namespace BenDi.FortuneVoronoi
 		}	
 		public static VoronoiGraph ComputeVoronoiGraph(IEnumerable Datapoints)
 		{
-			BinaryPriorityQueue PQ = new BinaryPriorityQueue();
+			//BinaryPriorityQueue PQ = new BinaryPriorityQueue();
+            PriorityQueue<VEvent> PQ = new PriorityQueue<VEvent>(PriorityQueueType.Minimum);
 			Hashtable CurrentCircles = new Hashtable();
 			VoronoiGraph VG = new VoronoiGraph();
 			VNode RootNode = null;
 			foreach(Vector2 V in Datapoints)
 			{
-				PQ.Push(new VDataEvent(V));
+				PQ.Enqueue(new VDataEvent(V));
 			}
 			while(PQ.Count>0)
 			{
-				VEvent VE = PQ.Pop() as VEvent;
+				VEvent VE = PQ.Dequeue() as VEvent;
 				VDataNode[] CircleCheckList;
 				if(VE is VDataEvent)
 				{
@@ -133,7 +135,7 @@ namespace BenDi.FortuneVoronoi
 					VCircleEvent VCE = VNode.CircleCheckDataNode(VD,VE.Y);
 					if(VCE!=null)
 					{
-						PQ.Push(VCE);
+						PQ.Enqueue(VCE);
 						CurrentCircles[VD]=VCE;
 					}
 				}
