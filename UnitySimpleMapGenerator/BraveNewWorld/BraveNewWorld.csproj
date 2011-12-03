@@ -5,14 +5,10 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0BC32450-0FF3-4799-A091-3BD5FE66AB35}</ProjectGuid>
+    <ProjectGuid>{5ACF382B-10CE-4C85-A9AB-8B27CBD5FD76}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Taffer.UnitySimpleMapGenerator</RootNamespace>
-    <AssemblyName>Taffer.UnitySimpleMapGenerator</AssemblyName>
-    <Description>This is a port of Baran Kahyaoglu's Simple Map Generator, which you can find
-here:
-
-http://www.barankahyaoglu.com/blog/post/2011/07/27/Simple-Map-Generator-Part-1.aspx</Description>
+    <RootNamespace>BraveNewWorld</RootNamespace>
+    <AssemblyName>BraveNewWorld</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,21 +31,27 @@ http://www.barankahyaoglu.com/blog/post/2011/07/27/Simple-Map-Generator-Part-1.a
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\..\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEngine.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Helpers\MapPointToPointConverter.cs" />
+    <Compile Include="Models\Center.cs" />
+    <Compile Include="Models\Corner.cs" />
+    <Compile Include="Models\Edge.cs" />
+    <Compile Include="Models\Factory.cs" />
+    <Compile Include="Models\IMapItem.cs" />
+    <Compile Include="Models\Map.cs" />
+    <Compile Include="Models\Triangle.cs" />
+    <Compile Include="Services\IslandService.cs" />
+    <Compile Include="Services\MapService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="FortuneVoronoi\FortuneVoronoi.csproj">
+    <ProjectReference Include="..\FortuneVoronoi\FortuneVoronoi.csproj">
       <Project>{21803548-A68A-473A-BF1B-0AE5F63F9F1A}</Project>
       <Name>FortuneVoronoi</Name>
-    </ProjectReference>
-    <ProjectReference Include="BraveNewWorld\BraveNewWorld.csproj">
-      <Project>{5ACF382B-10CE-4C85-A9AB-8B27CBD5FD76}</Project>
-      <Name>BraveNewWorld</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
