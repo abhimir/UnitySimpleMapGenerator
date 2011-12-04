@@ -14,17 +14,46 @@ namespace BenDi.FortuneVoronoi
 
     public class VoronoiEdge
     {
-        public Vector2 RightData, LeftData;
-        public Vector2 VVertexA = Fortune.VVUnkown, VVertexB = Fortune.VVUnkown;
+        /// <summary>
+        /// The right data.
+        /// </summary>
+        public Vector2 RightData;
 
+        /// <summary>
+        /// The left data.
+        /// </summary>
+        public Vector2 LeftData;
+
+        /// <summary>
+        /// The V vertex a.
+        /// </summary>
+        public Vector2 VVertexA = Fortune.VVUnkown;
+
+        /// <summary>
+        /// The V vertex b.
+        /// </summary>
+        public Vector2 VVertexB = Fortune.VVUnkown;
+
+        /// <summary>
+        /// Adds the vertex.
+        /// </summary>
+        /// <param name='V'>
+        /// V.
+        /// </param>
+        /// <exception cref='Exception'>
+        /// Represents errors that occur during application execution.
+        /// </exception>
         public void AddVertex( Vector2 V )
         {
-            if( VVertexA == Fortune.VVUnkown )
+            if( VVertexA == Fortune.VVUnkown ) {
                 VVertexA = V;
-            else if( VVertexB == Fortune.VVUnkown )
+            }
+            else if( VVertexB == Fortune.VVUnkown ) {
                 VVertexB = V;
-            else
+            }
+            else {
                 throw new Exception( "Tried to add third vertex!" );
+            }
         }
     }
 }

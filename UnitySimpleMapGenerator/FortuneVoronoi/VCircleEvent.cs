@@ -14,21 +14,53 @@ namespace BenDi.FortuneVoronoi
 
     internal class VCircleEvent : VEvent
     {
-        public VDataNode NodeN, NodeL, NodeR;
+        /// <summary>
+        /// The node n.
+        /// </summary>
+        public VDataNode NodeN;
+
+        /// <summary>
+        /// The node l.
+        /// </summary>
+        public VDataNode NodeL;
+
+        /// <summary>
+        /// The node r.
+        /// </summary>
+        public VDataNode NodeR;
+
+        /// <summary>
+        /// The center.
+        /// </summary>
         public Vector2 Center;
 
-        public override double Y {
+        /// <summary>
+        /// The valid.
+        /// </summary>
+        public bool Valid = true;
+
+        /// <summary>
+        /// Gets the y.
+        /// </summary>
+        /// <value>
+        /// The y.
+        /// </value>
+        public override float Y {
             get {
-                return Math.Round( Center.y + MathTools.Dist( NodeN.DataPoint.x, NodeN.DataPoint.y, Center.x, Center.y ), 10 );
+                return Mathf.Round( Center.y + MathTools.Dist( NodeN.DataPoint.x, NodeN.DataPoint.y, Center.x, Center.y ) );
             }
         }
 
-        public override double X {
+        /// <summary>
+        /// Gets the x.
+        /// </summary>
+        /// <value>
+        /// The x.
+        /// </value>
+        public override float X {
             get {
                 return Center.x;
             }
         }
-
-        public bool Valid = true;
     }
 }

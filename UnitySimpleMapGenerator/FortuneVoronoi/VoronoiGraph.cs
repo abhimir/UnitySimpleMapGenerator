@@ -15,7 +15,14 @@ namespace BenDi.FortuneVoronoi
 
     public class VoronoiGraph
     {
+        /// <summary>
+        /// The vertizes.
+        /// </summary>
         public HashSet<Vector2> Vertizes = new HashSet<Vector2>();
+        
+        /// <summary>
+        /// The edges.
+        /// </summary>
         public HashSet<VoronoiEdge> Edges = new HashSet<VoronoiEdge>();
     }
 }

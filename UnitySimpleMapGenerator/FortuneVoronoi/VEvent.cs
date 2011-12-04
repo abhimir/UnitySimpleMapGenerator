@@ -12,20 +12,50 @@ namespace BenDi.FortuneVoronoi
 
     internal abstract class VEvent : IComparable
     {
-        public abstract double Y { get; }
+        /// <summary>
+        /// Gets the y.
+        /// </summary>
+        /// <value>
+        /// The y.
+        /// </value>
+        public abstract float Y { get; }
 
-        public abstract double X { get; }
+        /// <summary>
+        /// Gets the x.
+        /// </summary>
+        /// <value>
+        /// The x.
+        /// </value>
+        public abstract float X { get; }
 
         #region IComparable Members
 
+        /// <summary>
+        /// Compares to a VEvent.
+        /// </summary>
+        /// <returns>
+        /// The to.
+        /// </returns>
+        /// <param name='obj'>
+        /// Object.
+        /// </param>
+        /// <exception cref='ArgumentException'>
+        /// Is thrown when an argument passed to a method is invalid.
+        /// </exception>
         public int CompareTo( object obj )
         {
-            if( !( obj is VEvent ) )
+            VEvent vObj = obj as VEvent;
+
+            if( vObj == null ) {
                 throw new ArgumentException( "obj not VEvent!" );
-            int i = Y.CompareTo( ( (VEvent)obj ).Y );
-            if( i != 0 )
+            }
+
+            int i = Y.CompareTo( vObj.Y );
+            if( i != 0 ) {
                 return i;
-            return X.CompareTo( ( (VEvent)obj ).X );
+            }
+
+            return X.CompareTo( vObj.X );
         }
 
      #endregion

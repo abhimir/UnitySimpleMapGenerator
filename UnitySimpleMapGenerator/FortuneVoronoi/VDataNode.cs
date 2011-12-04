@@ -14,11 +14,20 @@ namespace BenDi.FortuneVoronoi
 
     internal class VDataNode : VNode
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BenDi.FortuneVoronoi.VDataNode"/> class.
+        /// </summary>
+        /// <param name='DP'>
+        /// D.
+        /// </param>
         public VDataNode( Vector2 DP )
         {
             this.DataPoint = DP;
         }
 
+        /// <summary>
+        /// The data point.
+        /// </summary>
         public Vector2 DataPoint;
     }
 }

@@ -14,20 +14,41 @@ namespace BenDi.FortuneVoronoi
 
     internal class VDataEvent : VEvent
     {
+        /// <summary>
+        /// The data point.
+        /// </summary>
         public Vector2 DataPoint;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BenDi.FortuneVoronoi.VDataEvent"/> class.
+        /// </summary>
+        /// <param name='DP'>
+        /// D.
+        /// </param>
         public VDataEvent( Vector2 DP )
         {
             this.DataPoint = DP;
         }
 
-        public override double Y {
+        /// <summary>
+        /// Gets the y.
+        /// </summary>
+        /// <value>
+        /// The y.
+        /// </value>
+        public override float Y {
             get {
                 return DataPoint.y;
             }
         }
 
-        public override double X {
+        /// <summary>
+        /// Gets the x.
+        /// </summary>
+        /// <value>
+        /// The x.
+        /// </value>
+        public override float X {
             get {
                 return DataPoint.x;
             }
