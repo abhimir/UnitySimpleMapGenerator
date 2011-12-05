@@ -46,13 +46,13 @@ namespace BenDi.FortuneVoronoi
         /// <param name='x'>
         /// X.
         /// </param>
-        public float Cut( float ys, float x )
+        public double Cut( double ys, double x )
         {
             if( !Flipped ) {
-                return (float)Math.Round( x - Fortune.ParabolicCut( Edge.LeftData.x, Edge.LeftData.y, Edge.RightData.x, Edge.RightData.y, ys ) );
+                return (double)Math.Round( x - Fortune.ParabolicCut( Edge.LeftData.X, Edge.LeftData.Y, Edge.RightData.X, Edge.RightData.Y, ys ) );
             }
 
-            return (float)Math.Round( x - Fortune.ParabolicCut( Edge.RightData.x, Edge.RightData.y, Edge.LeftData.x, Edge.LeftData.y, ys ) );
+            return (double)Math.Round( x - Fortune.ParabolicCut( Edge.RightData.X, Edge.RightData.Y, Edge.LeftData.X, Edge.LeftData.Y, ys ) );
         }
     }
 }

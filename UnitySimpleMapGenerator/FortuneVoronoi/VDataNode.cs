@@ -10,7 +10,7 @@ namespace BenDi.FortuneVoronoi
 {
     using System;
 
-    using UnityEngine;
+    using NGenerics.DataStructures.Mathematical;
 
     internal class VDataNode : VNode
     {
@@ -20,7 +20,7 @@ namespace BenDi.FortuneVoronoi
         /// <param name='DP'>
         /// D.
         /// </param>
-        public VDataNode( Vector2 DP )
+        public VDataNode( Vector2D DP )
         {
             this.DataPoint = DP;
         }
@@ -28,6 +28,6 @@ namespace BenDi.FortuneVoronoi
         /// <summary>
         /// The data point.
         /// </summary>
-        public Vector2 DataPoint;
+        public Vector2D DataPoint;
     }
 }

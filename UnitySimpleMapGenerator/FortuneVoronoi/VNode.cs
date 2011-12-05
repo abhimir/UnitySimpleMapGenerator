@@ -10,7 +10,7 @@ namespace BenDi.FortuneVoronoi
 {
     using System;
 
-    using UnityEngine;
+    using NGenerics.DataStructures.Mathematical;
 
     internal abstract class VNode
     {
@@ -243,7 +243,7 @@ namespace BenDi.FortuneVoronoi
         /// <exception cref='Exception'>
         /// Represents errors that occur during application execution.
         /// </exception>
-        public static VDataNode FindDataNode( VNode Root, float ys, float x )
+        public static VDataNode FindDataNode( VNode Root, double ys, double x )
         {
             VNode C = Root;
 
@@ -292,7 +292,7 @@ namespace BenDi.FortuneVoronoi
         /// <exception cref='Exception'>
         /// Represents errors that occur during application execution.
         /// </exception>
-        public static VNode ProcessDataEvent( VDataEvent e, VNode Root, VoronoiGraph VG, float ys, out VDataNode[] CircleCheckList )
+        public static VNode ProcessDataEvent( VDataEvent e, VNode Root, VoronoiGraph VG, double ys, out VDataNode[] CircleCheckList )
         {
             if( Root == null ) {
                 Root = new VDataNode( e.DataPoint );
@@ -301,7 +301,7 @@ namespace BenDi.FortuneVoronoi
             }
 
             //1. Find the node to be replaced
-            VNode C = VNode.FindDataNode( Root, ys, e.DataPoint.x );
+            VNode C = VNode.FindDataNode( Root, ys, e.DataPoint.X );
             VDataNode cData = C as VDataNode;
 
             if( cData == null ) {
@@ -317,8 +317,8 @@ namespace BenDi.FortuneVoronoi
             VG.Edges.Add( VE );
 
             VNode SubRoot;
-            if( Mathf.Abs( VE.LeftData.y - VE.RightData.y ) < 1e-10 ) {
-                if( VE.LeftData.x < VE.RightData.x ) {
+            if( Math.Abs( VE.LeftData.Y - VE.RightData.Y ) < 1e-10 ) {
+                if( VE.LeftData.X < VE.RightData.X ) {
                     SubRoot = new VEdgeNode( VE, false );
                     SubRoot.Left = new VDataNode( VE.LeftData );
                     SubRoot.Right = new VDataNode( VE.RightData );
@@ -390,7 +390,7 @@ namespace BenDi.FortuneVoronoi
             CircleCheckList = new VDataNode[] {a,c};
 
             //1. Create the new Vertex
-            Vector2 VNew = new Vector2( e.Center.x, e.Center.y );
+            Vector2D VNew = new Vector2D( e.Center.X, e.Center.Y );
 
             VG.Vertizes.Add( VNew );
 
@@ -441,7 +441,7 @@ namespace BenDi.FortuneVoronoi
         /// <param name='ys'>
         /// Ys.
         /// </param>
-        public static VCircleEvent CircleCheckDataNode( VDataNode n, float ys )
+        public static VCircleEvent CircleCheckDataNode( VDataNode n, double ys )
         {
             VDataNode l = VNode.LeftDataNode( n );
             VDataNode r = VNode.RightDataNode( n );
@@ -449,11 +449,11 @@ namespace BenDi.FortuneVoronoi
                 return null;
             }
 
-            if( MathTools.ccw( l.DataPoint.x, l.DataPoint.y, n.DataPoint.x, n.DataPoint.y, r.DataPoint.x, r.DataPoint.y, false ) <= 0 ) {
+            if( MathTools.ccw( l.DataPoint.X, l.DataPoint.Y, n.DataPoint.X, n.DataPoint.Y, r.DataPoint.X, r.DataPoint.Y, false ) <= 0 ) {
                 return null;
             }
 
-            Vector2 Center = Fortune.CircumCircleCenter( l.DataPoint, n.DataPoint, r.DataPoint );
+            Vector2D Center = Fortune.CircumCircleCenter( l.DataPoint, n.DataPoint, r.DataPoint );
             VCircleEvent VC = new VCircleEvent();
             VC.NodeN = n;
             VC.NodeL = l;

@@ -10,29 +10,29 @@ namespace BenDi.FortuneVoronoi
 {
     using System;
 
-    using UnityEngine;
+    using NGenerics.DataStructures.Mathematical;
 
     public class VoronoiEdge
     {
         /// <summary>
         /// The right data.
         /// </summary>
-        public Vector2 RightData;
+        public Vector2D RightData;
 
         /// <summary>
         /// The left data.
         /// </summary>
-        public Vector2 LeftData;
+        public Vector2D LeftData;
 
         /// <summary>
         /// The V vertex a.
         /// </summary>
-        public Vector2 VVertexA = Fortune.VVUnkown;
+        public Vector2D VVertexA = Fortune.VVUnkown;
 
         /// <summary>
         /// The V vertex b.
         /// </summary>
-        public Vector2 VVertexB = Fortune.VVUnkown;
+        public Vector2D VVertexB = Fortune.VVUnkown;
 
         /// <summary>
         /// Adds the vertex.
@@ -43,7 +43,7 @@ namespace BenDi.FortuneVoronoi
         /// <exception cref='Exception'>
         /// Represents errors that occur during application execution.
         /// </exception>
-        public void AddVertex( Vector2 V )
+        public void AddVertex( Vector2D V )
         {
             if( VVertexA == Fortune.VVUnkown ) {
                 VVertexA = V;
@@ -57,4 +57,3 @@ namespace BenDi.FortuneVoronoi
         }
     }
 }
-

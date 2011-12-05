@@ -10,7 +10,7 @@ namespace BenDi.FortuneVoronoi
 {
     using System;
 
-    using UnityEngine;
+    using NGenerics.DataStructures.Mathematical;
 
     internal class VCircleEvent : VEvent
     {
@@ -32,7 +32,7 @@ namespace BenDi.FortuneVoronoi
         /// <summary>
         /// The center.
         /// </summary>
-        public Vector2 Center;
+        public Vector2D Center;
 
         /// <summary>
         /// The valid.
@@ -45,9 +45,9 @@ namespace BenDi.FortuneVoronoi
         /// <value>
         /// The y.
         /// </value>
-        public override float Y {
+        public override double Y {
             get {
-                return Mathf.Round( Center.y + MathTools.Dist( NodeN.DataPoint.x, NodeN.DataPoint.y, Center.x, Center.y ) );
+                return Math.Round( Center.Y + MathTools.Dist( NodeN.DataPoint.X, NodeN.DataPoint.Y, Center.X, Center.Y ), 10 );
             }
         }
 
@@ -57,9 +57,9 @@ namespace BenDi.FortuneVoronoi
         /// <value>
         /// The x.
         /// </value>
-        public override float X {
+        public override double X {
             get {
-                return Center.x;
+                return Center.X;
             }
         }
     }

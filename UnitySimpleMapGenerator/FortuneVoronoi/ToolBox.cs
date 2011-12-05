@@ -39,9 +39,9 @@ namespace BenDi.FortuneVoronoi
      /// <param name='y2'>
      /// Y2.
      /// </param>
-		public static float Dist(float x1, float y1, float x2, float y2)
+		public static double Dist(double x1, double y1, double x2, double y2)
 		{
-			return (float)Math.Sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+			return (double)Math.Sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
 		}
 
         /// <summary>
@@ -356,21 +356,21 @@ namespace BenDi.FortuneVoronoi
      /// </param>
 		public static RectangleF MaxRectangleFit(RectangleF Target, SizeF Source)
 		{
-			float W,H;
+			double W,H;
 
 			// 1. Auf h^he probieren
 			H = Target.Height;
 			W = Target.Height/Source.Height*Source.Width;
 			if(W<=Target.Width)
 			{
-				return new RectangleF(Target.X+Target.Width/2-W/2,Target.Y,W,H);
+				return new RectangleF((float)(Target.X+Target.Width/2-W/2),(float)Target.Y,(float)W,(float)H);
 			}
 
 			// 2. Auf weite probieren
 			W = Target.Width;
 			H = Target.Width/Source.Width*Source.Height;
 
-            return new RectangleF(Target.X,Target.Y+Target.Height/2-H/2,W,H);
+            return new RectangleF((float)Target.X,(float)(Target.Y+Target.Height/2-H/2),(float)W,(float)H);
 		}
 
         /// <summary>
@@ -388,13 +388,13 @@ namespace BenDi.FortuneVoronoi
         /// <exception cref='Exception'>
         /// Represents errors that occur during application execution.
         /// </exception>
-        public static float DASkalar(float[] A, float[] B)
+        public static double DASkalar(double[] A, double[] B)
 		{
 			if(A.Length!=B.Length) {
 				throw new Exception("Error in Skalar!");
             }
 
-			float E=0;
+			double E=0;
 			int i;
 			for(i=0;i<A.Length;i++)
 			{
@@ -416,9 +416,9 @@ namespace BenDi.FortuneVoronoi
      /// <param name='r'>
      /// R.
      /// </param>
-		public static float[] DAMult(float[] A, float r)
+		public static double[] DAMult(double[] A, double r)
 		{
-			float[] E = new float[A.Length];
+			double[] E = new double[A.Length];
 			int i;
 			for(i=0;i<E.Length;i++)
 			{
@@ -443,13 +443,13 @@ namespace BenDi.FortuneVoronoi
      /// <exception cref='Exception'>
      /// Represents errors that occur during application execution.
      /// </exception>
-		public static float[] DAAdd(float[] A, float[] B)
+		public static double[] DAAdd(double[] A, double[] B)
 		{
 			if(A.Length!=B.Length) {
 				throw new Exception("Error in Skalar!");
             }
 
-			float[] E=new float[A.Length];
+			double[] E=new double[A.Length];
 			int i;
 			for(i=0;i<A.Length;i++)
 			{
@@ -474,14 +474,14 @@ namespace BenDi.FortuneVoronoi
      /// <exception cref='Exception'>
      /// Represents errors that occur during application execution.
      /// </exception>
-		public static float DADist(float[] A, float[] B)
+		public static double DADist(double[] A, double[] B)
 		{
 			if(A.Length!=B.Length) {
 				throw new Exception("Unterschiedliche L 0/00ngen!");
             }
 
 			int i;
-			float E = 0;
+			double E = 0;
 			for(i=0;i<A.Length;i++) {
 				E+=(A[i]-B[i])*(A[i]-B[i]);
             }
@@ -498,10 +498,10 @@ namespace BenDi.FortuneVoronoi
      /// <param name='A'>
      /// A.
      /// </param>
-		public static float DASum(float[] A)
+		public static double DASum(double[] A)
 		{
-			float Erg=0;
-			foreach(float D in A)
+			double Erg=0;
+			foreach(double D in A)
 			{
 				Erg+=D;
 			}
@@ -518,9 +518,9 @@ namespace BenDi.FortuneVoronoi
      /// <param name='A'>
      /// A.
      /// </param>
-		public static float DAMean(float[] A)
+		public static double DAMean(double[] A)
 		{
-			return DASum(A)/(float)A.Length;
+			return DASum(A)/(double)A.Length;
 		}
 
         /// <summary>
@@ -535,17 +535,17 @@ namespace BenDi.FortuneVoronoi
      /// <param name='M'>
      /// M.
      /// </param>
-		public static float DAStdv(float[] A, float M)
+		public static double DAStdv(double[] A, double M)
 		{
-			float Erg = 0;
-			foreach(float D in A) {
+			double Erg = 0;
+			foreach(double D in A) {
 				Erg += (M-D)*(M-D);
             }
 
-			return Erg/(float)A.Length;
+			return Erg/(double)A.Length;
 		}
 
-		private static int doubleToInt(float f)
+		private static int doubleToInt(double f)
 		{
 			if (f >= 2.147484E+09f)
 			{
@@ -586,7 +586,7 @@ namespace BenDi.FortuneVoronoi
      /// <param name='OldCol'>
      /// Old col.
      /// </param>
-		public static float[] HSBtoRGB(int hue, int saturation, int brightness, float[] OldCol)
+		public static double[] HSBtoRGB(int hue, int saturation, int brightness, double[] OldCol)
 		{
 			/* Clip hue at 360: */
 			if(hue<0) {
@@ -596,16 +596,16 @@ namespace BenDi.FortuneVoronoi
             hue = hue % 360;
 
 			int i = (int)Math.Floor(hue/60.0f),j;
-			float[] C;
+			double[] C;
 			if(OldCol==null || OldCol.Length!=3) {
-				C = new float[3];
+				C = new double[3];
             }
 			else {
 				C = OldCol;
             }
 
-			float min = 127.0f * (240.0f - saturation)/240.0f;
-			float max = 255.0f - 127.0f * (240.0f - saturation)/240.0f;
+			double min = 127.0f * (240.0f - saturation)/240.0f;
+			double max = 255.0f - 127.0f * (240.0f - saturation)/240.0f;
 			if(brightness>120)
 			{
 				min = min + (255.0f-min)*(brightness-120)/120.0f;
@@ -660,7 +660,7 @@ namespace BenDi.FortuneVoronoi
      /// </param>
 		public static Color HSBtoRGB(int hue, int saturation, int brightness)
 		{
-			float[] C = HSBtoRGB(hue,saturation,brightness,null);
+			double[] C = HSBtoRGB(hue,saturation,brightness,null);
 			return Color.FromArgb((int)C[0],(int)C[1],(int)C[2]);
 		}
 
@@ -676,12 +676,12 @@ namespace BenDi.FortuneVoronoi
      /// <param name='y'>
      /// Y.
      /// </param>
-		public static float GetAngle(float x, float y)
+		public static double GetAngle(double x, double y)
 		{
 			if(x==0)
 			{
 				if(y>0) {
-					return (float)(Math.PI/2.0);
+					return (double)(Math.PI/2.0);
                 }
 
 				if(y==0) {
@@ -689,19 +689,19 @@ namespace BenDi.FortuneVoronoi
                 }
 
 				if(y<0) {
-					return (float)(Math.PI*3.0/2.0);
+					return (double)(Math.PI*3.0/2.0);
                 }
 			}
 
-            float atan = (float)Math.Atan(y/x);
+            double atan = (double)Math.Atan(y/x);
 			if(x>0 && y>=0) {
 				return atan;
             }
 			if(x>0 && y<0) {
-				return (float)(2*Math.PI+atan);
+				return (double)(2*Math.PI+atan);
             }
 
-			return (float)(Math.PI+atan);
+			return (double)(Math.PI+atan);
 		}
 
         /// <summary>
@@ -716,10 +716,10 @@ namespace BenDi.FortuneVoronoi
         /// <param name='y'>
         /// Y.
         /// </param>
-        public static float GetAngleTheta(float x, float y)
+        public static double GetAngleTheta(double x, double y)
 		{
-			float dx, dy, ax, ay;
-			float t;
+			double dx, dy, ax, ay;
+			double t;
 			dx = x;
 			dy = y;
             ax = Math.Abs(dx);
@@ -801,9 +801,9 @@ namespace BenDi.FortuneVoronoi
         /// <param name='PlusOneOnZeroDegrees'>
         /// Plus one on zero degrees.
         /// </param>
-        public static int ccw(float P0x, float P0y, float P1x, float P1y, float P2x, float P2y, bool PlusOneOnZeroDegrees)
+        public static int ccw(double P0x, double P0y, double P1x, double P1y, double P2x, double P2y, bool PlusOneOnZeroDegrees)
 		{
-			float dx1, dx2, dy1, dy2;
+			double dx1, dx2, dy1, dy2;
 
 			dx1 = P1x - P0x;
             dy1 = P1y - P0y;
@@ -873,9 +873,9 @@ namespace BenDi.FortuneVoronoi
      /// </exception>
 		public static PointF IntersectionPoint(Point P11, Point P12, Point P21, Point P22)
 		{
-			float Kx = P11.X, Ky = P11.Y, Mx = P21.X, My = P21.Y;
-			float Lx = (P12.X-P11.X), Ly = (P12.Y-P11.Y), Nx = (P22.X-P21.X), Ny = (P22.Y-P21.Y);
-			float a=float.NaN,b=float.NaN;
+			double Kx = P11.X, Ky = P11.Y, Mx = P21.X, My = P21.Y;
+			double Lx = (P12.X-P11.X), Ly = (P12.Y-P11.Y), Nx = (P22.X-P21.X), Ny = (P22.Y-P21.Y);
+			double a=double.NaN,b=double.NaN;
 
             if(Lx==0)
 			{

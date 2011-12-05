@@ -11,14 +11,14 @@ namespace BenDi.FortuneVoronoi
     using System;
     using System.Collections.Generic;
 
-    using UnityEngine;
+    using NGenerics.DataStructures.Mathematical;
 
     public class VoronoiGraph
     {
         /// <summary>
         /// The vertizes.
         /// </summary>
-        public HashSet<Vector2> Vertizes = new HashSet<Vector2>();
+        public HashSet<Vector2D> Vertizes = new HashSet<Vector2D>();
         
         /// <summary>
         /// The edges.

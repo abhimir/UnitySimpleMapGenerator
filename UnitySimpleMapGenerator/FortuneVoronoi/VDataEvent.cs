@@ -10,14 +10,14 @@ namespace BenDi.FortuneVoronoi
 {
     using System;
 
-    using UnityEngine;
+    using NGenerics.DataStructures.Mathematical;
 
     internal class VDataEvent : VEvent
     {
         /// <summary>
         /// The data point.
         /// </summary>
-        public Vector2 DataPoint;
+        public Vector2D DataPoint;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BenDi.FortuneVoronoi.VDataEvent"/> class.
@@ -25,7 +25,7 @@ namespace BenDi.FortuneVoronoi
         /// <param name='DP'>
         /// D.
         /// </param>
-        public VDataEvent( Vector2 DP )
+        public VDataEvent( Vector2D DP )
         {
             this.DataPoint = DP;
         }
@@ -36,9 +36,9 @@ namespace BenDi.FortuneVoronoi
         /// <value>
         /// The y.
         /// </value>
-        public override float Y {
+        public override double Y {
             get {
-                return DataPoint.y;
+                return DataPoint.Y;
             }
         }
 
@@ -48,9 +48,9 @@ namespace BenDi.FortuneVoronoi
         /// <value>
         /// The x.
         /// </value>
-        public override float X {
+        public override double X {
             get {
-                return DataPoint.x;
+                return DataPoint.X;
             }
         }
 

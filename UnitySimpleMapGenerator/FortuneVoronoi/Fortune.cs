@@ -11,8 +11,8 @@ namespace BenDi.FortuneVoronoi
     using System;
     using System.Collections;
 
+    using NGenerics.DataStructures.Mathematical;
     using NGenerics.DataStructures.Queues;
-    using UnityEngine;
 
 	// VoronoiVertex or VoronoiDataPoint are represented as Vector
 
@@ -21,13 +21,13 @@ namespace BenDi.FortuneVoronoi
         /// <summary>
      /// The VV infinite.
      /// </summary>
-		public static readonly Vector2 VVInfinite = new Vector2(float.PositiveInfinity, float.PositiveInfinity);
+		public static readonly Vector2D VVInfinite = new Vector2D(double.PositiveInfinity, double.PositiveInfinity);
         /// <summary>
      /// The VV unkown.
      /// </summary>
-		public static readonly Vector2 VVUnkown = new Vector2(float.NaN, float.NaN);
+		public static readonly Vector2D VVUnkown = new Vector2D(double.NaN, double.NaN);
 
-        internal static float ParabolicCut(float x1, float y1, float x2, float y2, float ys)
+        internal static double ParabolicCut(double x1, double y1, double x2, double y2, double ys)
 		{
 			if(Math.Abs(x1-x2)<1e-10 && Math.Abs(y1-y2)<1e-10)
 			{
@@ -46,19 +46,19 @@ namespace BenDi.FortuneVoronoi
 				return x2;
             }
 
-			float a1 = 1/(2*(y1-ys));
-			float a2 = 1/(2*(y2-ys));
+			double a1 = 1/(2*(y1-ys));
+			double a2 = 1/(2*(y2-ys));
 			if(Math.Abs(a1-a2)<1e-10) {
 				return (x1+x2)/2;
             }
 
-            float xs1 = (float)(0.5/(2*a1-2*a2)*(4*a1*x1-4*a2*x2+2*Math.Sqrt(-8*a1*x1*a2*x2-2*a1*y1+2*a1*y2+4*a1*a2*x2*x2+2*a2*y1+4*a2*a1*x1*x1-2*a2*y2)));
-			float xs2 = (float)(0.5/(2*a1-2*a2)*(4*a1*x1-4*a2*x2-2*Math.Sqrt(-8*a1*x1*a2*x2-2*a1*y1+2*a1*y2+4*a1*a2*x2*x2+2*a2*y1+4*a2*a1*x1*x1-2*a2*y2)));
-			xs1=(float)Math.Round(xs1,10);
-			xs2=(float)Math.Round(xs2,10);
+            double xs1 = (double)(0.5/(2*a1-2*a2)*(4*a1*x1-4*a2*x2+2*Math.Sqrt(-8*a1*x1*a2*x2-2*a1*y1+2*a1*y2+4*a1*a2*x2*x2+2*a2*y1+4*a2*a1*x1*x1-2*a2*y2)));
+			double xs2 = (double)(0.5/(2*a1-2*a2)*(4*a1*x1-4*a2*x2-2*Math.Sqrt(-8*a1*x1*a2*x2-2*a1*y1+2*a1*y2+4*a1*a2*x2*x2+2*a2*y1+4*a2*a1*x1*x1-2*a2*y2)));
+			xs1=(double)Math.Round(xs1,10);
+			xs2=(double)Math.Round(xs2,10);
 			if(xs1>xs2)
 			{
-				float h = xs1;
+				double h = xs1;
 				xs1=xs2;
 				xs2=h;
 			}
@@ -70,45 +70,45 @@ namespace BenDi.FortuneVoronoi
             return xs1;
 		}
 
-        internal static Vector2 CircumCircleCenter(Vector2 A, Vector2 B, Vector2 C)
+        internal static Vector2D CircumCircleCenter(Vector2D A, Vector2D B, Vector2D C)
 		{
 			if(A==B || B==C || A==C) {
 				throw new Exception("Need three different points!");
             }
 
-            float tx = (A.x + C.x)/2;
-			float ty = (A.y + C.y)/2;
+            double tx = (A.X + C.X)/2;
+			double ty = (A.Y + C.Y)/2;
 
-			float vx = (B.x + C.x)/2;
-			float vy = (B.y + C.y)/2;
+			double vx = (B.X + C.X)/2;
+			double vy = (B.Y + C.Y)/2;
 
-			float ux,uy,wx,wy;
+			double ux,uy,wx,wy;
 			
-			if(A.x == C.x)
+			if(A.X == C.X)
 			{
 				ux = 1;
 				uy = 0;
 			}
 			else
 			{
-				ux = (C.y - A.y)/(A.x - C.x);
+				ux = (C.Y - A.Y)/(A.X - C.X);
 				uy = 1;
 			}
 
-			if(B.x == C.x)
+			if(B.X == C.X)
 			{
 				wx = -1;
 				wy = 0;
 			}
 			else
 			{
-				wx = (B.y - C.y)/(B.x - C.x);
+				wx = (B.Y - C.Y)/(B.X - C.X);
 				wy = -1;
 			}
 
-			float alpha = (wy*(vx-tx)-wx*(vy - ty))/(ux*wy-wx*uy);
+			double alpha = (wy*(vx-tx)-wx*(vy - ty))/(ux*wy-wx*uy);
 
-			return new Vector2(tx+alpha*ux,ty+alpha*uy);
+			return new Vector2D(tx+alpha*ux,ty+alpha*uy);
 		}
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace BenDi.FortuneVoronoi
 			VoronoiGraph VG = new VoronoiGraph();
 			VNode RootNode = null;
 
-			foreach(Vector2 V in Datapoints)
+			foreach(Vector2D V in Datapoints)
 			{
 				PQ.Enqueue(new VDataEvent(V));
 			}
@@ -173,10 +173,10 @@ namespace BenDi.FortuneVoronoi
 
 				if(VE is VDataEvent)
 				{
-					Vector2 DP = ((VDataEvent)VE).DataPoint;
+					Vector2D DP = ((VDataEvent)VE).DataPoint;
 					foreach(VCircleEvent VCE in CurrentCircles.Values)
 					{
-						if(MathTools.Dist(DP.x,DP.y,VCE.Center.x,VCE.Center.y)<VCE.Y-VCE.Center.y && Math.Abs(MathTools.Dist(DP.x,DP.y,VCE.Center.x,VCE.Center.y)-(VCE.Y-VCE.Center.y))>1e-10) {
+						if(MathTools.Dist(DP.X,DP.Y,VCE.Center.X,VCE.Center.Y)<VCE.Y-VCE.Center.Y && Math.Abs(MathTools.Dist(DP.X,DP.Y,VCE.Center.X,VCE.Center.Y)-(VCE.Y-VCE.Center.Y))>1e-10) {
 							VCE.Valid = false;
                         }
 					}

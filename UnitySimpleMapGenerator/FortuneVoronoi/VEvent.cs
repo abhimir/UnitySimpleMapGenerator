@@ -18,7 +18,7 @@ namespace BenDi.FortuneVoronoi
         /// <value>
         /// The y.
         /// </value>
-        public abstract float Y { get; }
+        public abstract double Y { get; }
 
         /// <summary>
         /// Gets the x.
@@ -26,7 +26,7 @@ namespace BenDi.FortuneVoronoi
         /// <value>
         /// The x.
         /// </value>
-        public abstract float X { get; }
+        public abstract double X { get; }
 
         #region IComparable Members
 
